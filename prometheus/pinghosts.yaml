@@ -1,0 +1,6 @@
+---
+- targets:
+    - https://1.1.1.1/;Cloudflare
+    - https://8.8.8.8/;Google
+    - http://192.0.43.10/;Example.com
+    - https://www.google.co.uk/; Google (DNSed)
