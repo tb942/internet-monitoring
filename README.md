@@ -26,6 +26,11 @@ GF_SECURITY_ADMIN_PASSWORD=<your login password>
 GF_USERS_ALLOW_SIGN_UP=false
 ```
 
+### Create the `main` docker network (if it doesn't exist)
+```bash
+docker network create main
+```
+
 ### Stand the stack up
 ```bash
 docker-compose up --detach
@@ -46,7 +51,7 @@ docker-compose up --detach
 
 That's it. docker-compose builds the entire Grafana and Prometheus stack automagically.
 
-The Grafana Dashboard is now accessible via: `http://<Host IP Address>:3000` for example http://localhost:3000
+The grafana instance is not yet externally accessible, and instead exists within the external docker network `main`. This is ideal for exposing through a reverse proxy such as nginx to provide the service on a privelleged HTTP/HTTPS port with a domain. To connect an nginx container simply put it on the same `main` external docker network and set the proxy_pass value to `http://grafana:3000`.
 
 username - `admin`
 

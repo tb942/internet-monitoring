@@ -6,6 +6,8 @@ volumes:
   grafana_data: {}
 
 networks:
+  main:
+    external: true
   back-tier:
 
 services:
@@ -39,8 +41,7 @@ services:
       - ./grafana/config.monitoring
     networks:
       - back-tier
-    ports:
-      - 3000:3000
+      - main
 
   ping:
     tty: true
