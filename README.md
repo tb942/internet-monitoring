@@ -3,6 +3,8 @@
 
 Make sure Docker and [Docker Compose](https://docs.docker.com/compose/install/) are installed on your Docker host machine.
 
+With this branch you need a way of exposing grafana. If you just want it to work switch to the [main](https://github.com/tb942/internet-monitoring) branch. Otherwise, check out my [nginx config](https://github.com/tb942/nginx-https-reverse-proxy).
+
 ## Quick Start
 
 ### Pull the repo
