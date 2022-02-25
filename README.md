@@ -31,7 +31,9 @@ GF_USERS_ALLOW_SIGN_UP=false
 docker-compose up --detach
 ```
 
-Go to [http://localhost:3000/d/o9mIe_Aik/internet-connection](http://localhost:3030/d/o9mIe_Aik/internet-connection) (change `localhost` to your docker host ip/name).
+Go to [http://localhost:3000/d/o9mIe_Aik/internet-connection](http://localhost:3030/d/o9mIe_Aik/internet-connection) to view the internet connection (change `localhost` to your docker host ip/name).
+
+Go to [http://localhost:3000/d/I_uNS1xnk/pi-stats](http://localhost:3030/d/I_uNS1xnk/pi-stats) to view the current pi stats (change `localhost` to your docker host ip/name).
 
 ## Configuration
 
