@@ -59,3 +59,9 @@ username - `admin`
 password - `<your login password>` (Password you set in the `/grafana/config.monitoring` env file)
 
 The DataSource and Dashboard for Grafana are automatically provisioned.
+
+## Updating
+```bash
+docker-compose pull
+docker-compose up --detach
+```
