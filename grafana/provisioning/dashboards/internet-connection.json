@@ -316,7 +316,7 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "never",
+            "showPoints": "auto",
             "spanNulls": 900000,
             "stacking": {
               "group": "A",
@@ -351,8 +351,8 @@
         "y": 8
       },
       "id": 6,
+      "interval": "5m",
       "links": [],
-      "maxDataPoints": 50000,
       "options": {
         "graph": {},
         "legend": {
@@ -465,7 +465,7 @@
         "y": 8
       },
       "id": 16,
-      "interval": "10m",
+      "interval": "5m",
       "options": {
         "legend": {
           "calcs": [
@@ -688,8 +688,8 @@
     "list": []
   },
   "time": {
-    "from": "now-7d",
-    "to": "now"
+    "from": "2022-03-07T17:47:07.458Z",
+    "to": "2022-03-08T08:02:13.281Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -719,6 +719,6 @@
   "timezone": "browser",
   "title": "Internet connection",
   "uid": "o9mIe_Aik",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }
