@@ -22,7 +22,6 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "gnetId": null,
   "graphTooltip": 0,
   "links": [
     {
@@ -41,8 +40,10 @@
   "liveNow": false,
   "panels": [
     {
-      "cacheTimeout": null,
-      "datasource": "prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -89,13 +90,14 @@
         "y": 0
       },
       "id": 8,
-      "interval": null,
       "links": [],
       "maxDataPoints": 50000,
       "options": {
         "orientation": "horizontal",
         "reduceOptions": {
-          "calcs": ["mean"],
+          "calcs": [
+            "mean"
+          ],
           "fields": "",
           "values": false
         },
@@ -103,7 +105,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.2.5",
+      "pluginVersion": "8.4.3",
       "targets": [
         {
           "expr": "speedtest_download_bits_per_second{}",
@@ -119,8 +121,10 @@
       "type": "gauge"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -160,13 +164,14 @@
         "y": 0
       },
       "id": 12,
-      "interval": null,
       "links": [],
       "maxDataPoints": 50000,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": ["mean"],
+          "calcs": [
+            "mean"
+          ],
           "fields": "",
           "values": false
         },
@@ -174,7 +179,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.2.5",
+      "pluginVersion": "8.4.3",
       "targets": [
         {
           "exemplar": true,
@@ -201,8 +206,10 @@
       "type": "gauge"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -249,13 +256,14 @@
         "y": 0
       },
       "id": 10,
-      "interval": null,
       "links": [],
       "maxDataPoints": 50000,
       "options": {
         "orientation": "horizontal",
         "reduceOptions": {
-          "calcs": ["mean"],
+          "calcs": [
+            "mean"
+          ],
           "fields": "",
           "values": false
         },
@@ -263,7 +271,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.2.5",
+      "pluginVersion": "8.4.3",
       "targets": [
         {
           "exemplar": true,
@@ -280,7 +288,10 @@
       "type": "gauge"
     },
     {
-      "datasource": "prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -288,7 +299,7 @@
           },
           "custom": {
             "axisLabel": "",
-            "axisPlacement": "auto",
+            "axisPlacement": "left",
             "barAlignment": 0,
             "drawStyle": "line",
             "fillOpacity": 69,
@@ -345,19 +356,28 @@
       "options": {
         "graph": {},
         "legend": {
-          "calcs": [],
+          "calcs": [
+            "mean",
+            "min",
+            "max"
+          ],
           "displayMode": "list",
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.4.5",
-      "repeat": null,
       "targets": [
         {
-          "expr": "speedtest_download_bits_per_second{}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "exemplar": true,
+          "expr": "avg_over_time(speedtest_download_bits_per_second{}[10m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -365,21 +385,27 @@
           "refId": "A"
         },
         {
-          "expr": "speedtest_upload_bits_per_second{}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "exemplar": true,
+          "expr": "avg_over_time(speedtest_upload_bits_per_second{}[10m])",
           "hide": false,
           "interval": "",
           "legendFormat": "Upload",
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Speedtest Graph",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": "prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -405,7 +431,7 @@
               "type": "log"
             },
             "showPoints": "auto",
-            "spanNulls": true,
+            "spanNulls": 900000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -439,29 +465,45 @@
         "y": 8
       },
       "id": 16,
+      "interval": "10m",
       "options": {
         "legend": {
-          "calcs": ["mean"],
+          "calcs": [
+            "mean",
+            "min",
+            "max"
+          ],
           "displayMode": "list",
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
-          "expr": "speedtest_ping_latency_milliseconds{}",
+          "expr": "avg_over_time(speedtest_ping_latency_milliseconds{}[10m])",
+          "instant": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Ping Latency",
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
-          "expr": "speedtest_jitter_latency_milliseconds{}",
+          "expr": "avg_over_time(speedtest_jitter_latency_milliseconds{}[10m])",
           "hide": false,
+          "instant": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Jitter Latency",
@@ -473,7 +515,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -481,7 +526,8 @@
           },
           "custom": {
             "fillOpacity": 100,
-            "lineWidth": 0
+            "lineWidth": 0,
+            "spanNulls": false
           },
           "mappings": [],
           "max": 1,
@@ -516,7 +562,8 @@
         "rowHeight": 0.9,
         "showValue": "never",
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.2.5",
@@ -531,14 +578,15 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Uptime",
       "transparent": true,
       "type": "state-timeline"
     },
     {
-      "datasource": "prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -573,6 +621,7 @@
             }
           },
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -605,7 +654,8 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.2.5",
@@ -622,17 +672,18 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "HTTP Request Duration",
       "transparent": true,
       "type": "timeseries"
     }
   ],
-  "refresh": "1m",
-  "schemaVersion": 32,
+  "refresh": "",
+  "schemaVersion": 35,
   "style": "dark",
-  "tags": ["speedtest", "ping"],
+  "tags": [
+    "speedtest",
+    "ping"
+  ],
   "templating": {
     "list": []
   },
@@ -653,10 +704,21 @@
       "2h",
       "1d"
     ],
-    "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
   },
   "timezone": "browser",
   "title": "Internet connection",
   "uid": "o9mIe_Aik",
-  "version": 1
+  "version": 3,
+  "weekStart": ""
 }
