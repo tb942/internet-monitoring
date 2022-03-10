@@ -317,7 +317,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
+            "spanNulls": 900000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -677,7 +677,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "",
+  "refresh": false,
   "schemaVersion": 35,
   "style": "dark",
   "tags": [
@@ -719,6 +719,6 @@
   "timezone": "browser",
   "title": "Internet connection",
   "uid": "o9mIe_Aik",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
