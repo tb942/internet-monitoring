@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -91,7 +94,7 @@
       },
       "id": 8,
       "links": [],
-      "maxDataPoints": 50000,
+      "maxDataPoints": 10000,
       "options": {
         "orientation": "horizontal",
         "reduceOptions": {
@@ -105,10 +108,14 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.4.3",
+      "pluginVersion": "v1.0",
       "targets": [
         {
-          "expr": "speedtest_download_bits_per_second{}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "expr": "avg(speedtest_download_bits_per_second{})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -165,7 +172,7 @@
       },
       "id": 12,
       "links": [],
-      "maxDataPoints": 50000,
+      "maxDataPoints": 10000,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
@@ -179,11 +186,15 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.4.3",
+      "pluginVersion": "v1.0",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
-          "expr": "speedtest_ping_latency_milliseconds",
+          "expr": "avg(speedtest_ping_latency_milliseconds)",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -192,8 +203,12 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
-          "expr": "speedtest_jitter_latency_milliseconds",
+          "expr": "avg(speedtest_jitter_latency_milliseconds)",
           "hide": false,
           "instant": false,
           "interval": "",
@@ -257,7 +272,7 @@
       },
       "id": 10,
       "links": [],
-      "maxDataPoints": 50000,
+      "maxDataPoints": 10000,
       "options": {
         "orientation": "horizontal",
         "reduceOptions": {
@@ -271,11 +286,15 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.4.3",
+      "pluginVersion": "v1.0",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
-          "expr": "speedtest_upload_bits_per_second{}",
+          "expr": "avg(speedtest_upload_bits_per_second{})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -377,7 +396,7 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "exemplar": true,
-          "expr": "avg_over_time(speedtest_download_bits_per_second{}[10m])",
+          "expr": "avg(avg_over_time(speedtest_download_bits_per_second{}[10m]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -390,7 +409,7 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "exemplar": true,
-          "expr": "avg_over_time(speedtest_upload_bits_per_second{}[10m])",
+          "expr": "avg(avg_over_time(speedtest_upload_bits_per_second{}[10m]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Upload",
@@ -488,7 +507,7 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "exemplar": true,
-          "expr": "avg_over_time(speedtest_ping_latency_milliseconds{}[10m])",
+          "expr": "avg(avg_over_time(speedtest_ping_latency_milliseconds{}[10m]))",
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
@@ -501,7 +520,7 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "exemplar": true,
-          "expr": "avg_over_time(speedtest_jitter_latency_milliseconds{}[10m])",
+          "expr": "avg(avg_over_time(speedtest_jitter_latency_milliseconds{}[10m]))",
           "hide": false,
           "instant": false,
           "interval": "",
@@ -678,7 +697,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 35,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [
     "speedtest",
@@ -688,8 +707,8 @@
     "list": []
   },
   "time": {
-    "from": "2022-03-07T17:47:07.458Z",
-    "to": "2022-03-08T08:02:13.281Z"
+    "from": "now-7d",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -719,6 +738,6 @@
   "timezone": "browser",
   "title": "Internet connection",
   "uid": "o9mIe_Aik",
-  "version": 5,
+  "version": 1,
   "weekStart": ""
 }
