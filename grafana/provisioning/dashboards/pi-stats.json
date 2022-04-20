@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 2,
-  "iteration": 1650489693282,
+  "iteration": 1650490170599,
   "links": [
     {
       "asDropdown": false,
@@ -60,7 +60,7 @@
             "axisSoftMin": 20,
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 42,
+            "fillOpacity": 70,
             "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
@@ -71,13 +71,13 @@
             "lineStyle": {
               "fill": "solid"
             },
-            "lineWidth": 1,
+            "lineWidth": 2,
             "pointSize": 3,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "always",
-            "spanNulls": true,
+            "showPoints": "never",
+            "spanNulls": 3600000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -162,7 +162,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 50,
+            "fillOpacity": 70,
             "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
@@ -170,13 +170,13 @@
               "viz": false
             },
             "lineInterpolation": "linear",
-            "lineWidth": 1,
+            "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
-            "spanNulls": false,
+            "showPoints": "never",
+            "spanNulls": 3600000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -272,7 +272,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": 300000,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -351,7 +351,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 78,
+            "fillOpacity": 70,
             "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
@@ -359,12 +359,12 @@
               "viz": false
             },
             "lineInterpolation": "linear",
-            "lineWidth": 1,
+            "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -446,7 +446,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 100,
+            "fillOpacity": 71,
             "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
@@ -457,13 +457,13 @@
             "lineStyle": {
               "fill": "solid"
             },
-            "lineWidth": 1,
+            "lineWidth": 2,
             "pointSize": 3,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": 300000,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -634,13 +634,13 @@
     ]
   },
   "time": {
-    "from": "now-7d",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Pi stats",
   "uid": "I_uNS1xnk",
-  "version": 19,
+  "version": 1,
   "weekStart": ""
 }

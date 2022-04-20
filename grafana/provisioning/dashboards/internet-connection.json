@@ -25,7 +25,7 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "graphTooltip": 0,
+  "graphTooltip": 2,
   "links": [
     {
       "asDropdown": false,
@@ -108,7 +108,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "v1.0",
+      "pluginVersion": "9.0.0-58948pre",
       "targets": [
         {
           "datasource": {
@@ -186,7 +186,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "v1.0",
+      "pluginVersion": "9.0.0-58948pre",
       "targets": [
         {
           "datasource": {
@@ -286,7 +286,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "v1.0",
+      "pluginVersion": "9.0.0-58948pre",
       "targets": [
         {
           "datasource": {
@@ -335,7 +335,7 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": 900000,
             "stacking": {
               "group": "A",
@@ -449,7 +449,7 @@
               "log": 2,
               "type": "log"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": 900000,
             "stacking": {
               "group": "A",
@@ -496,7 +496,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -506,8 +506,10 @@
             "type": "prometheus",
             "uid": "P1809F7CD0C75ACF3"
           },
+          "editorMode": "code",
           "exemplar": true,
           "expr": "avg(avg_over_time(speedtest_ping_latency_milliseconds{}[10m]))",
+          "format": "time_series",
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
@@ -519,13 +521,15 @@
             "type": "prometheus",
             "uid": "P1809F7CD0C75ACF3"
           },
-          "exemplar": true,
+          "editorMode": "code",
+          "exemplar": false,
           "expr": "avg(avg_over_time(speedtest_jitter_latency_milliseconds{}[10m]))",
           "hide": false,
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Jitter Latency",
+          "range": true,
           "refId": "B"
         }
       ],
@@ -581,7 +585,7 @@
         "rowHeight": 0.9,
         "showValue": "never",
         "tooltip": {
-          "mode": "single",
+          "mode": "none",
           "sort": "none"
         }
       },
@@ -616,15 +620,15 @@
             "axisPlacement": "right",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
+            "fillOpacity": 71,
+            "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
             "lineInterpolation": "smooth",
-            "lineWidth": 1,
+            "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -654,7 +658,7 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "s"
         },
         "overrides": []
       },
@@ -673,7 +677,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -707,7 +711,7 @@
     "list": []
   },
   "time": {
-    "from": "now-7d",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -738,6 +742,6 @@
   "timezone": "browser",
   "title": "Internet connection",
   "uid": "o9mIe_Aik",
-  "version": 1,
+  "version": 20,
   "weekStart": ""
 }
