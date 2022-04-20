@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -21,10 +24,8 @@
   "description": "Raspberry pi performance",
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "gnetId": null,
   "graphTooltip": 2,
-  "id": 4,
-  "iteration": 1645799523410,
+  "iteration": 1650489693282,
   "links": [
     {
       "asDropdown": false,
@@ -42,15 +43,21 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": "prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "thresholds",
+            "seriesBy": "last"
           },
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
+            "axisSoftMax": 70,
+            "axisSoftMin": 20,
             "barAlignment": 0,
             "drawStyle": "line",
             "fillOpacity": 42,
@@ -76,7 +83,7 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "off"
+              "mode": "area"
             }
           },
           "displayName": "CPU temp",
@@ -89,8 +96,12 @@
                 "value": null
               },
               {
+                "color": "#EAB839",
+                "value": 45
+              },
+              {
                 "color": "red",
-                "value": 80
+                "value": 60
               }
             ]
           },
@@ -99,8 +110,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
-        "w": 24,
+        "h": 10,
+        "w": 12,
         "x": 0,
         "y": 0
       },
@@ -112,14 +123,19 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "multi",
+          "sort": "asc"
         }
       },
       "pluginVersion": "8.2.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
-          "expr": "avg_over_time(node_hwmon_temp_celsius{}[${avg_time}])",
+          "expr": "avg_over_time(node_hwmon_temp_celsius{sensor=\"temp0\"}[${avg_time}])",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -127,26 +143,27 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Pi CPU temp",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": "prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "thresholds"
           },
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
+            "fillOpacity": 50,
+            "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -160,6 +177,102 @@
             },
             "showPoints": "auto",
             "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            }
+          },
+          "displayName": "Memory",
+          "mappings": [],
+          "max": 4000000000,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 2000000000
+              },
+              {
+                "color": "red",
+                "value": 3000000000
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "avg_over_time(node_memory_MemTotal_bytes[${avg_time}]) - (avg_over_time(node_memory_MemFree_bytes[${avg_time}]) + avg_over_time(node_memory_Cached_bytes[${avg_time}]) + avg_over_time(node_memory_Buffers_bytes[${avg_time}])) ",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "C"
+        }
+      ],
+      "title": "Memory Usage",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 70,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": 300000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -190,7 +303,7 @@
         "h": 11,
         "w": 7,
         "x": 0,
-        "y": 12
+        "y": 10
       },
       "id": 4,
       "options": {
@@ -200,15 +313,22 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
           "exemplar": true,
           "expr": "sum(avg_over_time(node_cpu_scaling_frequency_hertz[${avg_time}]))/4",
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "CPU frequency",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -217,7 +337,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -273,9 +396,9 @@
       },
       "gridPos": {
         "h": 11,
-        "w": 9,
+        "w": 10,
         "x": 7,
-        "y": 12
+        "y": 10
       },
       "id": 8,
       "options": {
@@ -285,15 +408,22 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
           "exemplar": true,
           "expr": "(1 - avg(irate(node_cpu_seconds_total{mode=\"idle\"}[${avg_time}])) by (instance)) * 100",
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "CPU usage",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -302,7 +432,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -313,21 +446,24 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 50,
+            "fillOpacity": 100,
             "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "linear",
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 3,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
-            "spanNulls": false,
+            "showPoints": "never",
+            "spanNulls": 300000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -336,10 +472,7 @@
               "mode": "off"
             }
           },
-          "displayName": "Memory",
           "mappings": [],
-          "max": 2000000000,
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -353,17 +486,17 @@
               }
             ]
           },
-          "unit": "decbytes"
+          "unit": "Bps"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 11,
-        "w": 8,
-        "x": 16,
-        "y": 12
+        "h": 10,
+        "w": 7,
+        "x": 17,
+        "y": 10
       },
-      "id": 6,
+      "id": 10,
       "options": {
         "legend": {
           "calcs": [],
@@ -371,27 +504,49 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "multi",
+          "sort": "asc"
         }
       },
+      "pluginVersion": "9.0.0-58550pre",
       "targets": [
         {
-          "exemplar": true,
-          "expr": "avg_over_time(node_memory_MemTotal_bytes[${avg_time}]) - (avg_over_time(node_memory_MemFree_bytes[${avg_time}]) + avg_over_time(node_memory_Cached_bytes[${avg_time}]) + avg_over_time(node_memory_Buffers_bytes[${avg_time}])) ",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "rate(node_disk_read_bytes_total{device=\"sda\"}[$__rate_interval])",
+          "format": "time_series",
+          "hide": false,
+          "legendFormat": "{{device}} - read bytes",
+          "range": true,
+          "refId": "read"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "rate(node_disk_written_bytes_total{device=\"sda\"}[$__rate_interval])",
+          "format": "time_series",
           "hide": false,
           "instant": false,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "C"
+          "legendFormat": "{{device}} - Write Bytes",
+          "range": true,
+          "refId": "write"
         }
       ],
-      "title": "Memory Usage",
+      "title": "Disk IO",
       "transparent": true,
       "type": "timeseries"
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 32,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -406,9 +561,7 @@
           "value": "10m"
         },
         "description": "The time window to average values from",
-        "error": null,
         "hide": 0,
-        "label": null,
         "name": "avg_time",
         "options": [
           {
@@ -488,5 +641,6 @@
   "timezone": "",
   "title": "Pi stats",
   "uid": "I_uNS1xnk",
-  "version": 13
+  "version": 19,
+  "weekStart": ""
 }

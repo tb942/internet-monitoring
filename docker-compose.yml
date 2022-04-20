@@ -30,7 +30,7 @@ services:
       - back-tier
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:main
     restart: always
     volumes:
       - grafana_data:/var/lib/grafana
