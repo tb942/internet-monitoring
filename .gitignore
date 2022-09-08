@@ -1,1 +1,5 @@
 grafana/config.monitoring
+grafana_data/
+prometheus_data/
+pihole-exporter.env
+certs/

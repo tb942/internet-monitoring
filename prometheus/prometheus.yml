@@ -4,49 +4,54 @@ global:
   evaluation_interval: 15s
   scrape_timeout: 10s
   external_labels:
-    monitor: 'Alertmanager'
+    monitor: "Alertmanager"
 
 rule_files:
-  - 'alert.rules'
+  - "alert.rules"
 
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: "prometheus"
     static_configs:
-      - targets: ['localhost:9090']
+      - targets: ["localhost:9090"]
 
-  - job_name: 'trickster'
+  - job_name: "trickster"
     static_configs:
-    - targets: ['trickster:8481']
+      - targets: ["trickster:8481"]
 
-  - job_name: 'speedtest'
+  - job_name: "speedtest"
     metrics_path: /metrics
     scrape_interval: 10m
-    scrape_timeout: 60s  # running speedtest needs time to complete
+    scrape_timeout: 60s # running speedtest needs time to complete
     static_configs:
-      - targets: ['speedtest:9798']
+      - targets: ["speedtest:9798"]
 
-  - job_name: 'ping'
+  - job_name: "ping"
     metrics_path: /probe
     scrape_interval: 1m
     params:
-      module: [http_2xx]  # Look for a HTTP 200 response.
+      module: [http_2xx] # Look for a HTTP 200 response.
     file_sd_configs:
       - files:
           - pinghosts.yaml
     relabel_configs:
       - source_labels: [__address__]
-        regex: '(.*);(.*)'  # first is the url, thus unique for instance
+        regex: "(.*);(.*)" # first is the url, thus unique for instance
         target_label: instance
         replacement: $1
       - source_labels: [__address__]
-        regex: '(.*);(.*)'  # second is humanname to use in charts
+        regex: "(.*);(.*)" # second is humanname to use in charts
         target_label: humanname
         replacement: $2
       - source_labels: [instance]
         target_label: __param_target
       - target_label: __address__
-        replacement: ping:9115  # The blackbox exporter's real hostname:port.
+        replacement: ping:9115 # The blackbox exporter's real hostname:port.
 
-  - job_name: 'nodeexp'
+  - job_name: "nodeexp"
     static_configs:
-      - targets: ['nodeexp:9100']
+      - targets: ["nodeexp:9100"]
+
+  - job_name: "pihole"
+    static_configs:
+      - targets: ["pihole-exporter:9617"]
+    scrape_interval: 5s
