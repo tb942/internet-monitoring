@@ -94,13 +94,11 @@
       },
       "id": 8,
       "links": [],
-      "maxDataPoints": 10000,
+      "maxDataPoints": 9000,
       "options": {
         "orientation": "horizontal",
         "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
+          "calcs": ["mean"],
           "fields": "",
           "values": false
         },
@@ -108,7 +106,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "9.0.0-58948pre",
+      "pluginVersion": "9.0.0-65914pre",
       "targets": [
         {
           "datasource": {
@@ -172,13 +170,11 @@
       },
       "id": 12,
       "links": [],
-      "maxDataPoints": 10000,
+      "maxDataPoints": 9000,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
+          "calcs": ["mean"],
           "fields": "",
           "values": false
         },
@@ -186,7 +182,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "9.0.0-58948pre",
+      "pluginVersion": "9.0.0-65914pre",
       "targets": [
         {
           "datasource": {
@@ -272,13 +268,11 @@
       },
       "id": 10,
       "links": [],
-      "maxDataPoints": 10000,
+      "maxDataPoints": 9000,
       "options": {
         "orientation": "horizontal",
         "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
+          "calcs": ["mean"],
           "fields": "",
           "values": false
         },
@@ -286,7 +280,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "9.0.0-58948pre",
+      "pluginVersion": "9.0.0-65914pre",
       "targets": [
         {
           "datasource": {
@@ -375,11 +369,7 @@
       "options": {
         "graph": {},
         "legend": {
-          "calcs": [
-            "mean",
-            "min",
-            "max"
-          ],
+          "calcs": ["mean", "min", "max"],
           "displayMode": "list",
           "placement": "bottom"
         },
@@ -487,11 +477,7 @@
       "interval": "5m",
       "options": {
         "legend": {
-          "calcs": [
-            "mean",
-            "min",
-            "max"
-          ],
+          "calcs": ["mean", "min", "max"],
           "displayMode": "list",
           "placement": "bottom"
         },
@@ -575,6 +561,7 @@
       },
       "id": 14,
       "links": [],
+      "maxDataPoints": 9000,
       "options": {
         "alignValue": "left",
         "legend": {
@@ -703,10 +690,7 @@
   "refresh": false,
   "schemaVersion": 36,
   "style": "dark",
-  "tags": [
-    "speedtest",
-    "ping"
-  ],
+  "tags": ["speedtest", "ping"],
   "templating": {
     "list": []
   },
@@ -727,21 +711,11 @@
       "2h",
       "1d"
     ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
+    "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
   },
   "timezone": "browser",
   "title": "Internet connection",
   "uid": "o9mIe_Aik",
-  "version": 20,
+  "version": 2,
   "weekStart": ""
 }
