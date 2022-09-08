@@ -11,9 +11,12 @@ rule_files:
 
 scrape_configs:
   - job_name: 'prometheus'
-    scrape_interval: 5s
     static_configs:
       - targets: ['localhost:9090']
+
+  - job_name: 'trickster'
+    static_configs:
+    - targets: ['trickster:8481']
 
   - job_name: 'speedtest'
     metrics_path: /metrics

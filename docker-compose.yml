@@ -29,6 +29,16 @@ services:
     networks:
       - back-tier
 
+  trickster:
+    image: tricksterio/trickster:2.0.0-beta2
+    depends_on:
+      - prometheus
+    volumes:
+      - ./trickster/config:/etc/trickster:ro
+    networks:
+      - back-tier
+    restart: always
+
   grafana:
     image: grafana/grafana:main
     restart: always
@@ -36,7 +46,7 @@ services:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
     depends_on:
-      - prometheus
+      - trickster
     env_file:
       - ./grafana/config.monitoring
     networks:

@@ -1,0 +1,13 @@
+frontend:
+  listen_port: 9090
+
+backends:
+  default: # prometheus cached with a memory cache, traces sent to stdout
+    provider: prometheus
+    origin_url: "http://prometheus:9090"
+
+logging:
+  log_level: info
+
+metrics:
+  listen_port: 8481
