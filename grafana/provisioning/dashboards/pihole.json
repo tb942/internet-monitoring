@@ -515,13 +515,14 @@
             "spanNulls": 300000,
             "stacking": {
               "group": "A",
-              "mode": "none"
+              "mode": "normal"
             },
             "thresholdsStyle": {
               "mode": "off"
             }
           },
           "mappings": [],
+          "max": 100,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -847,13 +848,14 @@
             "spanNulls": 300000,
             "stacking": {
               "group": "A",
-              "mode": "none"
+              "mode": "normal"
             },
             "thresholdsStyle": {
               "mode": "off"
             }
           },
           "mappings": [],
+          "max": 100,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -946,7 +948,7 @@
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -1179,11 +1181,11 @@
       "2h",
       "1d"
     ],
-    "time_options": ["5m", "15m", "1h", "6h",  "12h", "24h", "2d", "7d", "30d"]
+    "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
   },
   "timezone": "",
   "title": "PI-Hole Exporter",
   "uid": "PI-Hole-Exporter",
-  "version": 3,
+  "version": 6,
   "weekStart": ""
 }
