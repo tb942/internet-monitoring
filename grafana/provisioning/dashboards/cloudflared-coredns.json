@@ -24,7 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 35,
   "links": [
     {
       "asDropdown": false,
@@ -66,12 +65,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "red",
                 "value": null
               },
               {
-                "color": "red",
-                "value": 80
+                "color": "green",
+                "value": 1
               }
             ]
           },
@@ -89,12 +88,12 @@
       "links": [],
       "maxDataPoints": 100,
       "options": {
-        "colorMode": "none",
-        "graphMode": "none",
+        "colorMode": "value",
+        "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
-          "calcs": ["min"],
+          "calcs": ["last"],
           "fields": "",
           "values": false
         },
@@ -107,10 +106,10 @@
             "uid": "$datasource"
           },
           "editorMode": "code",
-          "expr": "sum(up{job=\"cloudflared\",instance=~\"$instance\"})",
+          "expr": "sum(up{job=\"cloudflared\"})",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "",
+          "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
@@ -149,7 +148,7 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 1
               }
             ]
           },
@@ -167,8 +166,8 @@
       "links": [],
       "maxDataPoints": 100,
       "options": {
-        "colorMode": "none",
-        "graphMode": "none",
+        "colorMode": "value",
+        "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
@@ -364,9 +363,9 @@
       "links": [],
       "options": {
         "legend": {
-          "calcs": ["lastNotNull"],
-          "displayMode": "table",
-          "placement": "right",
+          "calcs": ["mean", "lastNotNull"],
+          "displayMode": "list",
+          "placement": "bottom",
           "showLegend": true
         },
         "tooltip": {
@@ -384,7 +383,7 @@
           "expr": "histogram_quantile(0.99, sum(rate(coredns_dns_request_duration_seconds_bucket{job=\"cloudflared\",instance=~\"$instance\"}[5m])) by (server, zone, le))",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "{{server}} {{zone}}",
+          "legendFormat": "Duration",
           "range": true,
           "refId": "A"
         }
@@ -560,10 +559,10 @@
       "links": [],
       "options": {
         "legend": {
-          "calcs": [],
+          "calcs": ["mean", "lastNotNull"],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -580,7 +579,7 @@
           "expr": "sum(rate(coredns_dns_requests_total{job=\"cloudflared\",instance=~\"$instance\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "__auto",
+          "legendFormat": "Requests",
           "range": true,
           "refId": "A"
         }
@@ -724,7 +723,53 @@
           },
           "unit": "ops"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "denial"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "success"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "misses"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 7,
@@ -834,7 +879,38 @@
           },
           "unit": "short"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "success"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "denial"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 7,
@@ -964,7 +1040,7 @@
           "expr": "histogram_quantile(0.99, sum(rate(coredns_dns_request_size_bytes_bucket{job=\"cloudflared\",instance=~\"$instance\"}[5m])) by (server, zone, proto, le))",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "99th% {{server}} {{proto}}",
+          "legendFormat": "99th%",
           "range": true,
           "refId": "A"
         },
@@ -976,7 +1052,7 @@
           "expr": "histogram_quantile(0.50, sum(rate(coredns_dns_request_size_bytes_bucket{job=\"cloudflared\",instance=~\"$instance\"}[5m])) by (server, zone, proto, le))",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "50th% {{server}} {{proto}}",
+          "legendFormat": "50th%",
           "range": true,
           "refId": "B"
         }
@@ -1074,7 +1150,7 @@
           "expr": "histogram_quantile(0.99, sum(rate(coredns_dns_response_size_bytes_bucket{job=\"cloudflared\",instance=~\"$instance\"}[5m])) by (server, zone, proto, le))",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "99th% {{server}} {{proto}}",
+          "legendFormat": "99th%",
           "range": true,
           "refId": "A"
         },
@@ -1086,7 +1162,7 @@
           "expr": "histogram_quantile(0.50, sum(rate(coredns_dns_response_size_bytes_bucket{job=\"cloudflared\",instance=~\"$instance\"}[5m])) by (server, zone, proto, le))",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "50th% {{server}} {{proto}}",
+          "legendFormat": "50th%",
           "range": true,
           "refId": "B"
         }
@@ -1141,7 +1217,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1166,7 +1243,7 @@
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": true
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -1238,7 +1315,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1246,7 +1324,7 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -1263,7 +1341,7 @@
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": true
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -1335,7 +1413,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1360,7 +1439,7 @@
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": true
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -1443,7 +1522,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -1464,6 +1543,6 @@
   "timezone": "browser",
   "title": "CoreDNS",
   "uid": "thael1rie7ohG6OY3eMeisahtee2iGoo1gooGhuu",
-  "version": 27,
+  "version": 30,
   "weekStart": ""
 }
