@@ -55,3 +55,8 @@ scrape_configs:
     static_configs:
       - targets: ["pihole-exporter:9617"]
     scrape_interval: 5s
+
+  - job_name: "cloudflared"
+    static_configs:
+      - targets: ["cloudflared:49312"]
+    scrape_interval: 5s
