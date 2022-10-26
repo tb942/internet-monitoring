@@ -21,7 +21,6 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 10176,
   "graphTooltip": 1,
-  "iteration": 1654814605961,
   "links": [
     {
       "asDropdown": false,
@@ -66,6 +65,8 @@
             "mode": "continuous-RdYlGr"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -135,8 +136,9 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -225,7 +227,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.0-65914pre",
+      "pluginVersion": "9.2.2",
       "targets": [
         {
           "datasource": {
@@ -299,7 +301,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.0.0-65914pre",
+      "pluginVersion": "9.2.2",
       "targets": [
         {
           "datasource": {
@@ -385,7 +387,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.0-65914pre",
+      "pluginVersion": "9.2.2",
       "targets": [
         {
           "datasource": {
@@ -461,7 +463,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.0-65914pre",
+      "pluginVersion": "9.2.2",
       "targets": [
         {
           "datasource": {
@@ -490,6 +492,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -548,7 +552,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -605,8 +610,9 @@
       "options": {
         "displayLabels": [],
         "legend": {
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "pieType": "pie",
         "reduceOptions": {
@@ -646,6 +652,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -677,7 +685,6 @@
             }
           },
           "mappings": [],
-          "max": 2,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -755,7 +762,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -769,9 +777,11 @@
             "type": "prometheus",
             "uid": "P1809F7CD0C75ACF3"
           },
-          "expr": "rate(pihole_queries_cached{hostname='$node'}[5m])",
+          "editorMode": "code",
+          "expr": "rate(pihole_queries_cached{hostname='$node'}[30m])",
           "interval": "",
           "legendFormat": "Queries cached",
+          "range": true,
           "refId": "A"
         },
         {
@@ -779,9 +789,11 @@
             "type": "prometheus",
             "uid": "P1809F7CD0C75ACF3"
           },
-          "expr": "rate(pihole_queries_forwarded{hostname='$node'}[5m])",
+          "editorMode": "code",
+          "expr": "rate(pihole_queries_forwarded{hostname='$node'}[30m])",
           "interval": "",
           "legendFormat": "Queries forwarded",
+          "range": true,
           "refId": "B"
         },
         {
@@ -790,7 +802,7 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "editorMode": "code",
-          "expr": "rate(pihole_ads_blocked_today{hostname='$node'}[5m])",
+          "expr": "rate(pihole_ads_blocked_today{hostname='$node'}[30m])",
           "hide": false,
           "legendFormat": "Queries blocked",
           "range": true,
@@ -812,6 +824,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -930,8 +944,9 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -983,8 +998,9 @@
       "maxDataPoints": 3,
       "options": {
         "legend": {
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "pieType": "pie",
         "reduceOptions": {
@@ -1025,6 +1041,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1082,8 +1100,9 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -1105,7 +1124,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 36,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1142,7 +1161,7 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -1160,11 +1179,11 @@
       "2h",
       "1d"
     ],
-    "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
+    "time_options": ["5m", "15m", "1h", "6h",  "12h", "24h", "2d", "7d", "30d"]
   },
   "timezone": "",
   "title": "PI-Hole Exporter",
   "uid": "PI-Hole-Exporter",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }
