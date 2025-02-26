@@ -1,6 +1,3 @@
----
-version: "3.9"
-
 networks:
   main:
     external: true
@@ -10,7 +7,7 @@ networks:
 
 services:
   prometheus:
-    image: prom/prometheus:v2.39.1
+    image: prom/prometheus:v3.2.1
     restart: always
     user: 1000:1000
     volumes:
@@ -26,8 +23,9 @@ services:
       - ping:ping
       - speedtest:speedtest
     networks:
-      - back-tier
-      - pi-hole_cloudflared
+      back-tier:
+      pi-hole_cloudflared:
+        ipv4_address: 172.25.0.3
 
   trickster:
     image: tricksterio/trickster:2.0.0-beta2
@@ -40,7 +38,7 @@ services:
     restart: always
 
   grafana:
-    image: grafana/grafana:9.2.2
+    image: grafana/grafana:11.5.2
     restart: always
     user: 1000:1000
     volumes:
