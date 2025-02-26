@@ -4,3 +4,6 @@
     - https://8.8.8.8/;Google
     - http://192.0.43.10/;Example.com
     - https://www.google.co.uk/; Google (DNSed)
+    - https://pihole.lan/admin/;Pihole admin page
+    - https://cluster.lan/;Cluster homepage (Cluster)
+    - https://gitea.lan/;Gitea (Cluster)
